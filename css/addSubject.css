@@ -1,0 +1,42 @@
+.main{
+    display:block !important;
+}
+.subjectForm{
+    display: block !important;
+    text-align: left;
+    width: 50vw;
+}
+.deleteBtn{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: 50px;
+    background-color: white;
+    color: red;
+    border: none;
+}
+.deleteBtn:hover{
+    color: white;
+    background-color: #4A78EE ;
+}
+
+.paddingRight{
+    padding-right: 10px;
+   
+}
+.paddingTop{
+    padding-top: 10px;
+}
+.MuiTableCell-root{
+    padding: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px;
+}
+.firstRow .MuiTableCell-root{
+    background-color: gainsboro;
+    padding: 16px !important;
+}
+.container{
+    display: block !important;
+    width: 50% !important;
+    margin: auto;
+}

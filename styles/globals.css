@@ -14,3 +14,46 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* Sidebar bar background color changing code*/
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper,.css-d9ml5t-MuiDrawer-docked .MuiDrawer-paper{
+  background-color: #4A78EE;
+}
+.css-10hburv-MuiTypography-root,.css-cveggr-MuiListItemIcon-root{
+  color:white;
+}
+/* Sidebar bar background color changing code*/
+
+/* Logo center in sidebar*/
+.logo{
+  align-items: center;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+/*Full width for main component beside sidebar*/
+@media (min-width: 600px){
+  .css-1v5u2yv {
+      padding: 0 !important;
+       width: 100% !important;
+  }}
+/*remove top bar*/
+  @media (min-width: 600px){
+  .css-1t29gy6-MuiToolbar-root {
+      min-height: 64px;
+      display: none;
+  }
+}
+
+@media (max-width:600px) {
+  .css-1v5u2yv{
+    padding: 0px !important;
+    padding-top: 24px !important;
+  }
+  
+}
+
+.MuiButtonBase-root{
+  padding: 10px !important ;
+}
+ 

@@ -1,0 +1,41 @@
+body{
+  margin: 0;
+  background-color: #4A78EE;
+}
+
+/* html, body {margin: 0; height: 100%; overflow: hidden} */
+.para{
+  /* For an improved learning and teaching experience! */
+
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 49px;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.945);
+}
+
+.homePageContainer{
+  height: 100vh !important;
+    justify-content: center !important;
+    /* justify-content: center; */
+    align-content: center;
+    flex-direction: column;
+}
+
+.LoginForm{
+  background-color: aliceblue !important;
+  padding: 10%;
+  border-radius: 14px;
+  display: flex;
+  width: 40vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.LoginBtn{
+  width: 30% !important;
+}

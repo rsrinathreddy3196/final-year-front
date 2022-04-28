@@ -1,0 +1,31 @@
+.main{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+.subMain{
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    margin:2vh 10vw;
+    padding-bottom: 5vh;
+}
+
+.text1{
+    width: 30vw;
+}
+
+.dob{
+    width: 30vw;
+    padding: 10px;
+    border-radius: 5px;
+    border-color:rgba(0, 0, 0, 0.37);
+}
+.heading{
+    text-align: center;
+    
+}

@@ -1,0 +1,42 @@
+.main{
+    background-color: #fff !important;
+    width: 100vw-240;
+    height: 100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (min-width:600px) {
+    .main{
+        margin: 0!important;
+        margin-left: 240px !important;
+    }
+}
+.dashboardContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+.marginZero{
+    margin-top: 0 !important;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.deleteBtn{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width: 50px;
+    background-color: white;
+    color: red !important;
+    border: none;
+}
+.deleteBtn:hover{
+    color: white;
+    background-color: #4A78EE ;
+}
