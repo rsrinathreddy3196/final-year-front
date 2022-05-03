@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
-import { Container } from 'react-bootstrap';
 import axios from 'axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { useNavigate } from 'react-router-dom';
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
-  
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { Dialog,DialogContentText,DialogTitle,DialogActions,DialogContent, Button,Grid,Box,TextField,FormControlLabel} from '@mui/material';
 
 function LoginForm(){
+      const router = useRouter()
       const [usn, setUSN] = useState();
       const [password, setPassword] = useState();
-      const [open, setOpen] = React.useState(false);
+      const [empErr,setempErr] = useState({});
+      const [passwordErr,setPasswordErr] = useState({});
+      const [open, setOpen] = useState(false);
   
       const handleClickToOpen = () => {
         setOpen(true);
@@ -25,13 +19,13 @@ function LoginForm(){
         setOpen(false);
       };
       
-      const navigate = useNavigate()
-
+    
       const handleSubmit = event => {
         event.preventDefault();
+        const isValid = formValidation();
         console.log(usn,password);
         const user = {
-          EmployeeId: usn,
+          USN: usn,
           password:password
         };
     
@@ -41,26 +35,51 @@ function LoginForm(){
                 "Access-Control-Allow-Origin": "localhost:3000",
             }
           };
-        axios.post('http://localhost:3000/teacherLogin',  user , axiosConfig)
+        if(isValid){
+        axios.post('http://localhost:3000/studentLogin',  user , axiosConfig)
           .then(res => {
             if(res.data.data.length===0){
               handleClickToOpen();
             }else{
+              router.push('./pages/about')
               localStorage.setItem('token',res.data.token);
-              navigate('/signup');
             }
           
             
-          }).catch(e=>console.log(e));
+          }).catch(e=>console.log(e))
+        }
       }
+      const formValidation = () =>{
+        const empErr = {};
+        const passwordErr = {};
+        let isValid = true;
+
+        if(usn==null){
+          empErr.error = "usn cannot be empty";
+          isValid = false;
+        }
+        if(password==null||password.length==0){
+          passwordErr.passerr = "password cannot be empty";
+          isValid = false;
+        }
+
+        else if(usn.trim().length!=10){
+              empErr.emperror = "Invalid Usn";
+              isValid = false;
+        }
+        
+        setempErr(empErr);
+        setPasswordErr(passwordErr);
+        return isValid;
+  }
       return(
         
             <>
              <Dialog open={open} onClose={handleToClose}>
-              <DialogTitle>{"Error"}</DialogTitle>
+              <DialogTitle>Wrong Password</DialogTitle>
               <DialogContent>
                 <DialogContentText>
-                   Invalid Id or Password
+                  Invalid Id or Password
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -70,25 +89,54 @@ function LoginForm(){
                 </Button>
               </DialogActions>
             </Dialog>
-            <Container className='form'>
-                <Row>            
-                    <form onSubmit={handleSubmit}>
-                <h4>Welcome Back..</h4>
-                <Col  lg={12} md={12} sm={12}>
-                    <input  type="text" className=" mail form-control rounded-pill " id="exampleInputEmail1" aria-describedby="emailHelp" onChange={e=>setUSN(e.target.value)} placeholder='Enter Your Official Mail id'/>
-                </Col>
-                <Col lg={12} md={12} sm={12}>
-                    <input type="password" className=" password form-control rounded-pill" id="exampleInputPassword1" onChange={e=>setPassword(e.target.value)} placeholder='Enter Your Password'/>
-                </Col>
-                <a className='forgetpass' href='/'>Forget Your Password?</a>
-                <button type="submit" className="btn btn-primary ">Login</button>
-                    </form> 
-                </Row>
-    
-            </Container>    
+            <Grid container>
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} className='LoginForm' sm={10}>
+                <h2>Welcome Teachers!.</h2>
+            <TextField
+              onChange={e=>setUSN(e.target.value)}
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            {Object.keys(empErr).map((key)=>{
+                    return <div className='usncheck' style={{color:"red"}}>{empErr[key]}</div>
+                  })}
+            <TextField
+              onChange={e=>setPassword(e.target.value)}
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            {Object.keys(passwordErr).map((key)=>{
+                    return <div className='usncheck' style={{color:"red"}}>{passwordErr[key]}</div>
+                  })}
+        
+            <Button
+              type="submit"
+              className='LoginBtn'
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                  {"Don't have an account? Sign Up"}
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
             </>  
       );
 }
-
-
 export default LoginForm;

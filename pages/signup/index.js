@@ -6,7 +6,7 @@ function RegistrationPage() {
   return (
     <>
         <Nav/>
-        <Registercomp/> 
+        <Registercomp/>
     </>
   )
 }

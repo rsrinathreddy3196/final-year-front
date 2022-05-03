@@ -6,7 +6,10 @@ import Sidebar from '../mycomponents/teacher/sidebar';
 const LayoutWrapper=({path,props,Component})=>{
   console.log("HERE");
     let Layout=() => <></>;
-    if(path.startsWith('/teacher')){
+    if(path.startsWith('/teacher/signup')){
+      return <Component {...props}/>
+    }
+    if(path.startsWith('/teacher/')){
       return <><Sidebar/> <Component {...props} /></>;
       console.log("HERE CHange");
     }
