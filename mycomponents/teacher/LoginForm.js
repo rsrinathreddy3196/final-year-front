@@ -36,13 +36,16 @@ function LoginForm(){
             }
           };
         if(isValid){
-        axios.post('http://localhost:3000/studentLogin',  user , axiosConfig)
+        axios.post('http://localhost:3000/teacherLogin',  user , axiosConfig)
           .then(res => {
+            console.log(res);
             if(res.data.data.length===0){
               handleClickToOpen();
             }else{
-              router.push('./pages/about')
+              
+              // router.push('./pages/about')
               localStorage.setItem('token',res.data.token);
+              localStorage.setItem('id',res.data.data.EmployeeId);
             }
           
             

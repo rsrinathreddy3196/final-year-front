@@ -57,6 +57,7 @@ function Registercomp() {
               "Access-Control-Allow-Origin": "localhost:3000",
           }
         };
+        console.log(user);
         axios.post('http://localhost:3000/teacherRegistration',  user , axiosConfig)
             .then(res => {
               console.log(res.data);
